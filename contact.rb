@@ -85,23 +85,8 @@ class Contact
   # 2. the new value for that attribute
   # and then make the appropriate change to the contact
   def update
-    valid_selection = false
-    options = [1, 2, 3, 4]
-
-    while valid_selection == false
-      puts "Which contact attribute would you like to update?"
-      puts "[ 1 ] First name"
-      puts "[ 2 ] Last name"
-      puts "[ 3 ] Email"
-      puts "[ 4 ] Note"
-      attribute = gets.to_i
-
-      if options.include?(attribute)
-        valid_selection = true
-      else
-        puts "Invalid selection, please try again."
-      end
-    end
+    puts "Which contact attribute would you like to update?"
+    attribute = Contact.validate_selection
 
     puts "What would you like to new value to be?"
     new_value = gets.chomp
@@ -181,4 +166,5 @@ new_contact_2 = Contact.create("Jane", "Gomez", "janey@gmail.com", "is a writer"
 new_contact_3 = Contact.create("Brett", "Cecil", "brett@gmail.com", "plays baseball")
 
 puts Contact.all.inspect
-puts Contact.find_by.inspect
+new_contact.update
+puts new_contact.inspect
