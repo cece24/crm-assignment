@@ -30,6 +30,10 @@ class Contact
     @note
   end
 
+  def id
+    @id
+  end
+
   # Writer instance methods
   def first_name=(first_name)
     @first_name = first_name
@@ -57,13 +61,17 @@ class Contact
 
   # This method should return all of the existing contacts
   def self.all
-
+    @@contacts
   end
 
   # This method should accept an id as an argument
   # and return the contact who has that id
-  def self.find
-
+  def self.find(id)
+    @@contacts.each do |contact|
+      if contact.id == id
+        return contact
+      end
+    end
   end
 
   # This method should allow you to specify
@@ -102,5 +110,9 @@ class Contact
 end
 
 new_contact = Contact.create("Cece", "Wong", "cece@gmail.com", "likes kittens")
+new_contact_2 = Contact.create("Jane", "Gomez", "janey@gmail.com", "is a writer")
+new_contact_3 = Contact.create("Brett", "Cecil", "brett@gmail.com", "plays baseball")
 
-puts new_contact.inspect
+puts Contact.all.inspect
+
+puts Contact.find(2).inspect
