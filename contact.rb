@@ -67,10 +67,16 @@ class Contact
   # This method should accept an id as an argument
   # and return the contact who has that id
   def self.find(id)
-    @@contacts.each do |contact|
-      if contact.id == id
-        return contact
-      end
+    # solution 1
+    # @@contacts.each do |contact|
+    #   if contact.id == id
+    #     return contact
+    #   end
+    # end
+
+    # solution 2
+    @@contacts.find do
+      |contact| contact.id == id
     end
   end
 
@@ -78,11 +84,7 @@ class Contact
   # 1. which of the contact's attributes you want to update
   # 2. the new value for that attribute
   # and then make the appropriate change to the contact
-  def self.update # changed to Class method, will change later
-    puts "Please enter in the id for the contact you want to modify:"
-    contact_id = gets.to_i
-    contact = Contact.find(contact_id)
-
+  def update
     valid_selection = false
     options = [1, 2, 3, 4]
 
@@ -105,13 +107,13 @@ class Contact
     new_value = gets.chomp
 
     if attribute == 1
-      contact.first_name = new_value
+      self.first_name = new_value
     elsif attribute == 2
-      contact.last_name = new_value
+      self.last_name = new_value
     elsif attribute == 3
-      contact.email = new_value
+      self.email = new_value
     else
-      contact.note = new_value
+      self.note = new_value
     end
   end
 
@@ -150,6 +152,6 @@ puts Contact.all.inspect
 
 puts Contact.find(2).inspect
 
-Contact.update
+new_contact_3.update
 
 puts Contact.all.inspect
