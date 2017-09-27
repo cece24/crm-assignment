@@ -122,7 +122,36 @@ class Contact
   # by specifying both the name of the attribute and the value
   # eg. searching for 'first_name', 'Betty' should return the first contact named Betty
   def self.find_by
+    valid_selection = false
+    options = [1, 2, 3, 4]
 
+    while valid_selection == false
+      puts "Which contact attribute would you search by?"
+      puts "[ 1 ] First name"
+      puts "[ 2 ] Last name"
+      puts "[ 3 ] Email"
+      puts "[ 4 ] Note"
+      attribute = gets.to_i
+
+      if options.include?(attribute)
+        valid_selection = true
+      else
+        puts "Invalid selection, please try again."
+      end
+    end
+
+    puts "What is the attribute value?"
+    new_value = gets.chomp
+
+    if attribute == 1
+      @@contacts.find { |contact| contact.first_name = new_value }
+    elsif attribute == 2
+      @@contacts.find { |contact| contact.last_name = new_value }
+    elsif attribute == 3
+      @@contacts.find { |contact| contact.email = new_value }
+    else
+      @@contacts.find { |contact| contact.note = new_value }
+    end
   end
 
   # This method should delete all of the contacts
@@ -148,5 +177,5 @@ new_contact = Contact.create("Cece", "Wong", "cece@gmail.com", "likes kittens")
 new_contact_2 = Contact.create("Jane", "Gomez", "janey@gmail.com", "is a writer")
 new_contact_3 = Contact.create("Brett", "Cecil", "brett@gmail.com", "plays baseball")
 
-new_contact_2.delete
 puts Contact.all.inspect
+puts Contact.find_by.inspect
