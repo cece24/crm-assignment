@@ -127,11 +127,11 @@ class Contact
 
   # This method should delete all of the contacts
   def self.delete_all
-
+    @@contacts = []
   end
 
   def full_name
-
+    "#{ first_name } #{ last_name }"
   end
 
   # This method should delete the contact
@@ -148,10 +148,6 @@ new_contact = Contact.create("Cece", "Wong", "cece@gmail.com", "likes kittens")
 new_contact_2 = Contact.create("Jane", "Gomez", "janey@gmail.com", "is a writer")
 new_contact_3 = Contact.create("Brett", "Cecil", "brett@gmail.com", "plays baseball")
 
-puts Contact.all.inspect
+# puts Contact.all.inspect
 
-puts Contact.find(2).inspect
-
-new_contact_3.update
-
-puts Contact.all.inspect
+puts new_contact.full_name
