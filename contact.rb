@@ -122,23 +122,8 @@ class Contact
   # by specifying both the name of the attribute and the value
   # eg. searching for 'first_name', 'Betty' should return the first contact named Betty
   def self.find_by
-    valid_selection = false
-    options = [1, 2, 3, 4]
-
-    while valid_selection == false
-      puts "Which contact attribute would you search by?"
-      puts "[ 1 ] First name"
-      puts "[ 2 ] Last name"
-      puts "[ 3 ] Email"
-      puts "[ 4 ] Note"
-      attribute = gets.to_i
-
-      if options.include?(attribute)
-        valid_selection = true
-      else
-        puts "Invalid selection, please try again."
-      end
-    end
+    puts "Which contact attribute would you search by?"
+    attribute = validate_selection
 
     puts "What is the attribute value?"
     new_value = gets.chomp
@@ -170,6 +155,24 @@ class Contact
   end
 
   # Feel free to add other methods here, if you need them.
+  def self.validate_selection
+    valid_selection = false
+    options = [1, 2, 3, 4]
+    while valid_selection == false
+      puts "[ 1 ] First name"
+      puts "[ 2 ] Last name"
+      puts "[ 3 ] Email"
+      puts "[ 4 ] Note"
+      attribute = gets.to_i
+
+      if options.include?(attribute)
+        valid_selection = true
+        return attribute
+      else
+        puts "Invalid selection, please try again."
+      end
+    end
+  end
 
 end
 
