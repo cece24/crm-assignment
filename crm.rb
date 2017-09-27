@@ -51,7 +51,12 @@ class CRM
   end
 
   def modify_existing_contact
-    
+    puts "Please enter in the id of the contact you'd like to modify: "
+    id = gets.to_i
+
+    contact = Contact.find(id)
+    contact.update
+    puts "Contact has been successfully updated!"
   end
 
   def delete_contact
@@ -68,6 +73,10 @@ class CRM
 
 
 end
+
+new_contact = Contact.create("Cece", "Wong", "cece@gmail.com", "likes kittens")
+new_contact_2 = Contact.create("Jane", "Gomez", "janey@gmail.com", "is a writer")
+new_contact_3 = Contact.create("Brett", "Cecil", "brett@gmail.com", "plays baseball")
 
 a_crm_app = CRM.new
 a_crm_app.main_menu
