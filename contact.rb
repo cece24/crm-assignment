@@ -137,7 +137,7 @@ class Contact
   # This method should delete the contact
   # HINT: Check the Array class docs for built-in methods that might be useful here
   def delete
-
+    @@contacts.delete(self)
   end
 
   # Feel free to add other methods here, if you need them.
@@ -148,6 +148,5 @@ new_contact = Contact.create("Cece", "Wong", "cece@gmail.com", "likes kittens")
 new_contact_2 = Contact.create("Jane", "Gomez", "janey@gmail.com", "is a writer")
 new_contact_3 = Contact.create("Brett", "Cecil", "brett@gmail.com", "plays baseball")
 
-# puts Contact.all.inspect
-
-puts new_contact.full_name
+new_contact_2.delete
+puts Contact.all.inspect
