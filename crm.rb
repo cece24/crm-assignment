@@ -69,13 +69,26 @@ class CRM
   end
 
   def display_all_contacts
+    Contact.all.each do |contact|
+      puts "Contact ID: #{contact.id}"
+      puts "First name: #{contact.first_name}"
+      puts "Last name: #{contact.last_name}"
+      puts "Email: #{contact.email}"
+      puts "Note: #{contact.note}"
+    end
 
+    puts "-- end of contact list --"
   end
 
   def search_by_attribute
-
+    contact = Contact.find_by
+    puts "The following contact has been found:"
+    puts "Contact ID: #{contact.id}"
+    puts "First name: #{contact.first_name}"
+    puts "Last name: #{contact.last_name}"
+    puts "Email: #{contact.email}"
+    puts "Note: #{contact.note}"
   end
-
 
 end
 

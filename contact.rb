@@ -114,13 +114,13 @@ class Contact
     new_value = gets.chomp
 
     if attribute == 1
-      @@contacts.find { |contact| contact.first_name = new_value }
+      @@contacts.find { |contact| contact.first_name == new_value }
     elsif attribute == 2
-      @@contacts.find { |contact| contact.last_name = new_value }
+      @@contacts.find { |contact| contact.last_name == new_value }
     elsif attribute == 3
-      @@contacts.find { |contact| contact.email = new_value }
+      @@contacts.find { |contact| contact.email == new_value }
     else
-      @@contacts.find { |contact| contact.note = new_value }
+      @@contacts.find { |contact| contact.note == new_value }
     end
   end
 
