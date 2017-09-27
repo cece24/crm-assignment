@@ -78,8 +78,41 @@ class Contact
   # 1. which of the contact's attributes you want to update
   # 2. the new value for that attribute
   # and then make the appropriate change to the contact
-  def update
+  def self.update # changed to Class method, will change later
+    puts "Please enter in the id for the contact you want to modify:"
+    contact_id = gets.to_i
+    contact = Contact.find(contact_id)
 
+    valid_selection = false
+    options = [1, 2, 3, 4]
+
+    while valid_selection == false
+      puts "Which contact attribute would you like to update?"
+      puts "[ 1 ] First name"
+      puts "[ 2 ] Last name"
+      puts "[ 3 ] Email"
+      puts "[ 4 ] Note"
+      attribute = gets.to_i
+
+      if options.include?(attribute)
+        valid_selection = true
+      else
+        puts "Invalid selection, please try again."
+      end
+    end
+
+    puts "What would you like to new value to be?"
+    new_value = gets.chomp
+
+    if attribute == 1
+      contact.first_name = new_value
+    elsif attribute == 2
+      contact.last_name = new_value
+    elsif attribute == 3
+      contact.email = new_value
+    else
+      contact.note = new_value
+    end
   end
 
   # This method should work similarly to the find method above
@@ -116,3 +149,7 @@ new_contact_3 = Contact.create("Brett", "Cecil", "brett@gmail.com", "plays baseb
 puts Contact.all.inspect
 
 puts Contact.find(2).inspect
+
+Contact.update
+
+puts Contact.all.inspect
