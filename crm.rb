@@ -46,7 +46,11 @@ class CRM
     puts "Note: "
     note = gets.chomp
 
-    new_contact = Contact.create(first_name, last_name, email, note)
+    new_contact = Contact.create(
+      first_name: first_name,
+      last_name: last_name,
+      email: email,
+      note: note)
     puts "New contact has been successfully added!"
   end
 
@@ -92,9 +96,13 @@ class CRM
 
 end
 
-new_contact = Contact.create("Cece", "Wong", "cece@gmail.com", "likes kittens")
-new_contact_2 = Contact.create("Jane", "Gomez", "janey@gmail.com", "is a writer")
-new_contact_3 = Contact.create("Brett", "Cecil", "brett@gmail.com", "plays baseball")
+new_contact = Contact.create(
+  first_name: "Cece",
+  last_name: "Wong",
+  email: "cece@gmail.com", 
+  note: "likes kittens")
+# new_contact_2 = Contact.create("Jane", "Gomez", "janey@gmail.com", "is a writer")
+# new_contact_3 = Contact.create("Brett", "Cecil", "brett@gmail.com", "plays baseball")
 
 a_crm_app = CRM.new
 a_crm_app.main_menu
