@@ -81,8 +81,7 @@ class CRM
     puts "Please enter in the id of the contact you'd like to delete: "
     id = gets.to_i
 
-    contact = Contact.find(id)
-    contact.delete
+    Contact.delete(id)
     puts "Contact has been successfully deleted!"
   end
 
