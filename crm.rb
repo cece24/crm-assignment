@@ -58,8 +58,22 @@ class CRM
     puts "Please enter in the id of the contact you'd like to modify: "
     id = gets.to_i
 
-    contact = Contact.find(id)
-    contact.update
+    puts "Which contact attribute would you like to update?"
+    attribute = gets.chomp
+
+    puts "What would you like to new value to be?"
+    new_value = gets.chomp
+
+    if attribute == "first name"
+      Contact.update(id, first_name: new_value)
+    elsif attribute == "last name"
+      Contact.update(id, last_name: new_value)
+    elsif attribute == "email"
+      Contact.update(id, email: new_value)
+    else
+      Contact.update(id, note: new_value)
+    end
+
     puts "Contact has been successfully updated!"
   end
 
@@ -96,11 +110,11 @@ class CRM
 
 end
 
-new_contact = Contact.create(
-  first_name: "Cece",
-  last_name: "Wong",
-  email: "cece@gmail.com", 
-  note: "likes kittens")
+# new_contact = Contact.create(
+#   first_name: "Cece",
+#   last_name: "Wong",
+#   email: "cece@gmail.com",
+#   note: "likes kittens")
 # new_contact_2 = Contact.create("Jane", "Gomez", "janey@gmail.com", "is a writer")
 # new_contact_3 = Contact.create("Brett", "Cecil", "brett@gmail.com", "plays baseball")
 
