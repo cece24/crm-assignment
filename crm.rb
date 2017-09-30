@@ -1,3 +1,7 @@
+#to do
+#add method to handle if attribute value entered does not existing
+
+
 require_relative "contact"
 
 class CRM
@@ -59,21 +63,12 @@ class CRM
     id = gets.to_i
 
     puts "Which contact attribute would you like to update?"
-    attribute = gets.chomp
+    attribute = attribute_selection
 
     puts "What would you like to new value to be?"
     new_value = gets.chomp
 
-    if attribute == "first name"
-      Contact.update(id, first_name: new_value)
-    elsif attribute == "last name"
-      Contact.update(id, last_name: new_value)
-    elsif attribute == "email"
-      Contact.update(id, email: new_value)
-    else
-      Contact.update(id, note: new_value)
-    end
-
+    Contact.update(id, attribute => new_value)
     puts "Contact has been successfully updated!"
   end
 
@@ -104,7 +99,7 @@ class CRM
     puts "What is the attribute value?"
     attribute_value = gets.chomp
 
-    contact = Contact.find_by(attribute => attribute_value)
+    contact = Contact.find_by( attribute => attribute_value )
 
     puts "The following contact has been found:"
     puts "Contact ID: #{contact.id}"
