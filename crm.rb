@@ -104,15 +104,7 @@ class CRM
     puts "What is the attribute value?"
     attribute_value = gets.chomp
 
-    if attribute == "first name"
-      contact = Contact.find_by(first_name: attribute_value)
-    elsif attribute == "last name"
-      contact = Contact.find_by(last_name: attribute_value)
-    elsif attribute == "email"
-      contact = Contact.find_by(email: attribute_value)
-    else
-      contact = Contact.find_by(note: attribute_value)
-    end
+    contact = Contact.find_by(attribute.to_sym => attribute_value)
 
     puts "The following contact has been found:"
     puts "Contact ID: #{contact.id}"
