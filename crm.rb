@@ -98,7 +98,22 @@ class CRM
   end
 
   def search_by_attribute
-    contact = Contact.find_by
+    puts "Which contact attribute would you search by?"
+    attribute = gets.chomp
+
+    puts "What is the attribute value?"
+    attribute_value = gets.chomp
+
+    if attribute == "first name"
+      contact = Contact.find_by(first_name: attribute_value)
+    elsif attribute == "last name"
+      contact = Contact.find_by(last_name: attribute_value)
+    elsif attribute == "email"
+      contact = Contact.find_by(email: attribute_value)
+    else
+      contact = Contact.find_by(note: attribute_value)
+    end
+
     puts "The following contact has been found:"
     puts "Contact ID: #{contact.id}"
     puts "First name: #{contact.first_name}"
