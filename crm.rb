@@ -101,12 +101,16 @@ class CRM
 
     contact = Contact.find_by( attribute => attribute_value )
 
-    puts "The following contact has been found:"
-    puts "Contact ID: #{contact.id}"
-    puts "First name: #{contact.first_name}"
-    puts "Last name: #{contact.last_name}"
-    puts "Email: #{contact.email}"
-    puts "Note: #{contact.note}"
+    if contact
+      puts "The following contact has been found:"
+      puts "Contact ID: #{contact.id}"
+      puts "First name: #{contact.first_name}"
+      puts "Last name: #{contact.last_name}"
+      puts "Email: #{contact.email}"
+      puts "Note: #{contact.note}"
+    else
+      puts "No contact was found."
+    end
   end
 
   # validates attribute selection and converts it to a valid key name
