@@ -99,12 +99,12 @@ class CRM
 
   def search_by_attribute
     puts "Which contact attribute would you search by?"
-    attribute = gets.chomp
+    attribute = attribute_selection
 
     puts "What is the attribute value?"
     attribute_value = gets.chomp
 
-    contact = Contact.find_by(attribute.to_sym => attribute_value)
+    contact = Contact.find_by(attribute => attribute_value)
 
     puts "The following contact has been found:"
     puts "Contact ID: #{contact.id}"
@@ -112,6 +112,38 @@ class CRM
     puts "Last name: #{contact.last_name}"
     puts "Email: #{contact.email}"
     puts "Note: #{contact.note}"
+  end
+
+  # validates attribute selection and converts it to a valid key name
+  def attribute_selection
+    valid_selection = false
+    valid_options = [1, 2, 3, 4]
+    puts "Please select an attribute by its number: "
+    puts "[ 1 ] First name"
+    puts "[ 2 ] Last name"
+    puts "[ 3 ] Email"
+    puts "[ 4 ] Note"
+
+    while valid_selection == false
+      attribute = gets.to_i
+      if valid_options.include?(attribute)
+        valid_selection = true
+      else
+        puts "Invalid selection, please try again."
+      end
+    end
+
+    if attribute == 1
+      attribute = :first_name
+    elsif attribute == 2
+      attribute = :last_name
+    elsif attribute == 3
+      attribute = :email
+    else
+      attribute = :note
+    end
+
+    return attribute
   end
 
 end
