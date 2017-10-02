@@ -1,5 +1,5 @@
 #to do
-#add method to handle if attribute value entered does not existing
+#add method to handle if id is not valid for modify and delete methods
 
 
 require_relative "contact"
@@ -60,16 +60,20 @@ class CRM
 
   def modify_existing_contact
     puts "Please enter in the id of the contact you'd like to modify: "
-    id = gets.to_i
+    search_id = gets.to_i
 
-    puts "Which contact attribute would you like to update?"
-    attribute = attribute_selection
+    if Contact.exists?(:id => search_id)
+      puts "Which contact attribute would you like to update?"
+      attribute = attribute_selection
 
-    puts "What would you like to new value to be?"
-    new_value = gets.chomp
+      puts "What would you like to new value to be?"
+      new_value = gets.chomp
 
-    Contact.update(id, attribute => new_value)
-    puts "Contact has been successfully updated!"
+      Contact.update(search_id, attribute => new_value)
+      puts "Contact has been successfully updated!"
+    else
+      puts "No contact exists with an id of #{search_id}"
+    end
   end
 
   def delete_contact
